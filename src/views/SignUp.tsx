@@ -11,10 +11,84 @@ import { FaUser, FaRegEye, FaRegEyeSlash } from "react-icons/fa";
 import { useState } from "react";
 import theme from "../theme/index.tsx";
 import { FcGoogle } from "react-icons/fc";
+import { isValidEmail, isValidPassword } from "../utils/verification";
+import { supabase } from "../Context.tsx";
+import { singupAutentication } from "../services/authentication";
+import { useNavigate } from "react-router-dom";
 
 const SignUp = () => {
+  const navigate = useNavigate();
   const [showPassword, setShowPassword] = useState(false);
+  const [data, setData] = useState({
+    email: {
+      value: "",
+      error: null,
+      helperText: null,
+    },
+    password: {
+      value: "",
+      error: null,
+      helperText: null,
+    },
+    confirm_password: {
+      value: "",
+      error: null,
+      helperText: null,
+    },
+  });
 
+  const verifyInformation = async () => {
+    if (isValidEmail(data.email.value)) {
+      if (data.password.value === data.confirm_password.value) {
+        if (isValidPassword(data.password.value)) {
+          let { data: response, error } = await singupAutentication(
+            data.email.value,
+            data.password.value,
+            supabase
+          );
+          if (error) {
+            setData({
+              ...data,
+              email: {
+                ...data.email,
+                error: "Email já cadastrado",
+                helperText: "Email já cadastrado",
+              },
+            });
+          } else {
+            navigate("/");
+          }
+        } else {
+          setData({
+            ...data,
+            password: {
+              ...data.password,
+              error: "Senha inválida",
+              helperText: "Senha inválida",
+            },
+          });
+        }
+      } else {
+        setData({
+          ...data,
+          confirm_password: {
+            ...data.confirm_password,
+            error: "As senhas não são iguais",
+            helperText: "As senhas não são iguais",
+          },
+        });
+      }
+    } else {
+      setData({
+        ...data,
+        email: {
+          ...data.email,
+          error: "Email inválido",
+          helperText: "Email inválido",
+        },
+      });
+    }
+  };
   return (
     <Box
       sx={{
@@ -23,13 +97,15 @@ const SignUp = () => {
         height: "100vh",
       }}
       theme={theme}
-    >      <Box sx={{ width: "40%", height: "100%", backgroundColor: "#1A1A1A" }}>
-    <img
-      src="https://imgur.com/NIeIDtv.png"
-      alt="logo"
-      style={{ width: "100%", marginTop: "100px" }}
-    />
-  </Box>
+    >
+      {" "}
+      <Box sx={{ width: "40%", height: "100%", backgroundColor: "#1A1A1A" }}>
+        <img
+          src="https://imgur.com/NIeIDtv.png"
+          alt="logo"
+          style={{ width: "100%", marginTop: "100px" }}
+        />
+      </Box>
       <Box
         sx={{
           textAlign: "center",
@@ -95,6 +171,11 @@ const SignUp = () => {
             type="text"
             placeholder="Email ou Telefone"
             variant="standard"
+            value={data.email.value}
+            helperText={data.email.helperText}
+            onChange={(e) =>
+              setData({ ...data, email: { value: e.target.value } })
+            }
             sx={{ width: "70%", height: "20px" }}
             InputProps={{
               style: { height: "50px" },
@@ -114,6 +195,11 @@ const SignUp = () => {
             placeholder="Senha"
             type={showPassword ? "text" : "password"}
             variant="standard"
+            value={data.password.value}
+            helperText={data.password.helperText}
+            onChange={(e) =>
+              setData({ ...data, password: { value: e.target.value } })
+            }
             sx={{ width: "70%" }}
             InputProps={{
               style: { height: "50px" },
@@ -134,6 +220,11 @@ const SignUp = () => {
             placeholder="Confirmar Senha"
             type={showPassword ? "text" : "password"}
             variant="standard"
+            value={data.confirm_password.value}
+            helperText={data.confirm_password.helperText}
+            onChange={(e) =>
+              setData({ ...data, confirm_password: { value: e.target.value } })
+            }
             sx={{ width: "70%" }}
             InputProps={{
               style: { height: "38px" },
@@ -155,6 +246,7 @@ const SignUp = () => {
         <Button
           variant="contained"
           color="primary"
+          onClick={verifyInformation}
           sx={{
             width: "70%",
             marginTop: "10px",
@@ -179,7 +271,6 @@ const SignUp = () => {
           </Link>
         </Typography>
       </Box>
-
     </Box>
   );
 };

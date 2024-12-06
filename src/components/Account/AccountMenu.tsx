@@ -10,8 +10,12 @@ import {
   IconButton,
 } from "@mui/material";
 import * as React from "react";
+import { logout } from "../../services/authentication.js";
+import { useNavigate } from "react-router-dom";
+import { supabase } from "../../Context.js";
 
 const AccountMenu = ({ name }) => {
+  const navigate = useNavigate();
   const [anchorEl, setAnchorEl] = React.useState<null | HTMLElement>(null);
   const open = Boolean(anchorEl);
   const handleClick = (event: React.MouseEvent<HTMLButtonElement>) => {
@@ -21,6 +25,11 @@ const AccountMenu = ({ name }) => {
     setAnchorEl(null);
   };
 
+  const handleLogout = async () => {
+    console.log("handleLogout");
+    await logout(supabase);
+    navigate("/Signin");
+  }
   return (
     <React.Fragment>
       <Box>
@@ -94,6 +103,9 @@ const AccountMenu = ({ name }) => {
         </MenuItem>
         <MenuItem onClick={handleClose}>
           <Avatar /> My account
+        </MenuItem>
+        <MenuItem onClick={handleLogout}>
+          Sair
         </MenuItem>
       </Menu>
     </React.Fragment>

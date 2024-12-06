@@ -3,6 +3,7 @@ import { useEffect, useState } from "react";
 import { supabase } from "../Context.tsx";
 import { checkSession } from "../services/authentication.js";
 
+
 const Protected = () => {
   const navigate = useNavigate();
   const [authToken, setAuthToken] = useState(null);

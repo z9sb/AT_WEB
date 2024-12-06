@@ -1,8 +1,9 @@
 import React from "react";
 import { Box, Stack, Typography } from "@mui/material";
 import { deepPurple, deepOrange } from "@mui/material/colors";
-import AvatarComponent from "./avatar";
+import AvatarComponent from "../Avatar/Avatar";
 import Checkbox from '@mui/material/Checkbox';
+import getTickets from "../../services/database.js";
 
 const CardComponent: React.FC = () => {
   const user = {

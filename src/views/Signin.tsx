@@ -30,13 +30,29 @@ const Signin: React.FC = () => {
       error: null,
       helperText: null,
     },
+    confirmEmail: null,
   });
 
-  const verifyLogin = async() => {
-    let {data: response, error} = await signinAutentication(data.email.value, data.password.value, supabase);
+  const verifyLogin = async () => {
+    let { data: response, error } = await signinAutentication(
+      data.email.value,
+      data.password.value,
+      supabase
+    );
 
-    if (error && error.message === 'Invalid login credentials') {
-      {alert("Email ou senha inválidos!");}
+    if (error && error.message === "Invalid login credentials") {
+      {
+        setData({
+          ...data,
+          email: {
+            ...data.email,
+            error: "Invalid login credentials",
+            helperText: "Email ou senha inválidos",
+          },
+        });
+      }
+    } else if (error && error.message === "Email not confirmed") {
+      setData({ ...data, confirmEmail: 'Email não confirmado' });
     } else {
       navigate("/");
     }
@@ -126,6 +142,7 @@ const Signin: React.FC = () => {
             placeholder="Account"
             variant="standard"
             value={data.email.value}
+            helperText={data.email.helperText}
             onChange={(e) =>
               setData({ ...data, email: { value: e.target.value } })
             }

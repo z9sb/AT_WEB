@@ -8,10 +8,21 @@ import { LuMail } from "react-icons/lu";
 import { LuMailPlus } from "react-icons/lu";
 import { TbMailFast } from "react-icons/tb";
 import { TbMailCheck } from "react-icons/tb";
-
+import { getTickets } from "../../services/database.js";
+import { CardTicket } from "../CardTicket/CardTicket";
 
 const LabTabsTicket = () => {
   const [value, setValue] = React.useState("1");
+  const [tickets, setTickets] = React.useState([]);
+
+  React.useEffect(() => {
+    const fetchTickets = async () => {
+      const result = await getTickets();
+      setTickets(result);
+    };
+
+    fetchTickets();
+  }, []);
 
   const handleChange = (event, newValue) => {
     setValue(newValue);
@@ -20,25 +31,29 @@ const LabTabsTicket = () => {
   return (
     <Box sx={{ width: "100%", typography: "body1" }}>
       <TabContext value={value}>
-        <Box sx={{ borderBottom: 1, borderColor: "divider"}}>
+        <Box sx={{ borderBottom: 1, borderColor: "divider" }}>
           <TabList
             onChange={handleChange}
             aria-label="lab API tabs example"
             textColor="inherit"
             indicatorColor=""
-            sx={{ fontFamily: "Poppins", fontSize: "12px", textTransform: "none"}}
+            sx={{
+              fontFamily: "Poppins",
+              fontSize: "12px",
+              textTransform: "none",
+            }}
           >
             <Tab
               label="Todos"
               value="1"
-              icon={<LuMail size={15}/>}
+              icon={<LuMail size={15} />}
               iconPosition="start"
               sx={{
                 fontSize: "14px",
                 textTransform: "none",
                 fontWeight: 500,
-                fontFamily: 'Montserrat',
-                marginRight: "20px"
+                fontFamily: "Montserrat",
+                marginRight: "20px",
               }}
             />
             <Tab
@@ -50,8 +65,8 @@ const LabTabsTicket = () => {
                 fontSize: "14px",
                 textTransform: "none",
                 fontWeight: 500,
-                fontFamily: 'Montserrat',
-                marginRight: "20px"
+                fontFamily: "Montserrat",
+                marginRight: "20px",
               }}
             />
             <Tab
@@ -63,8 +78,8 @@ const LabTabsTicket = () => {
                 fontSize: "14px",
                 textTransform: "none",
                 fontWeight: 500,
-                fontFamily: 'Montserrat',
-                marginRight: "20px"
+                fontFamily: "Montserrat",
+                marginRight: "20px",
               }}
             />
             <Tab
@@ -76,13 +91,17 @@ const LabTabsTicket = () => {
                 fontSize: "14px",
                 textTransform: "none",
                 fontWeight: 500,
-                fontFamily: 'Montserrat',
-                marginRight: "20px"
+                fontFamily: "Montserrat",
+                marginRight: "20px",
               }}
             />
           </TabList>
         </Box>
-        <TabPanel value="1">Teste</TabPanel>
+        <TabPanel value="1">
+          {tickets.slice(-2).map((item) => (
+            <CardTicket key={item.id} ticket={item} />
+          ))}
+        </TabPanel>
         <TabPanel value="2">Item Two</TabPanel>
         <TabPanel value="3">Item Three</TabPanel>
       </TabContext>

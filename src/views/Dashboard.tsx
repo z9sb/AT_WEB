@@ -1,11 +1,14 @@
 import { Box, Typography } from "@mui/material";
 import * as React from "react";
-
 import InputText from "../components/InputText/InputText.tsx";
 import ButtonTicket from "../components/ButtonTicket/ButtonTicket.tsx";
 import LabTabsTicket from "../components/ControlTicket/ControlTicket.tsx";
+import TicketForm from "./Form.tsx";
+
 
 const Dashboard = () => {
+  const [open, setOpen] = React.useState(false);
+
   return (
     <Box
       sx={{
@@ -17,13 +20,14 @@ const Dashboard = () => {
       <Typography variant="h4" sx={{ marginBottom: "10px" }}>
         Ticketz
       </Typography>
-      <Box>
+      <Box sx={{ display: "flex", gap: "10px", width: "100%" }}>
         <Box
           sx={{
             backgroundColor: "#fff",
             padding: "20px",
             borderRadius: "5px",
             height: "75.9vh",
+            width: "100%"
           }}
         >
           <Box
@@ -34,10 +38,12 @@ const Dashboard = () => {
             }}
           >
             <InputText />
-            <ButtonTicket />
+            <ButtonTicket setOpen={setOpen} open={open}/>
           </Box>
           <LabTabsTicket />
         </Box>
+
+        {open && <TicketForm setOpen={setOpen} open={open}/>}
       </Box>
     </Box>
   );

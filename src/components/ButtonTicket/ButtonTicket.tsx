@@ -2,13 +2,14 @@ import SelectPriority from "../SelectPriority/SelectPriority.tsx";
 import { TbEdit } from "react-icons/tb";
 import { Box, Button } from "@mui/material";
 
-const ButtonTicket = () => {
+const ButtonTicket = ({ setOpen, open }) => {
   return (
     <Box sx={{ display: "flex", gap: "10px" }}>
       <SelectPriority />
       <Button
         startIcon={<TbEdit />}
         variant="standard"
+        onClick={() => setOpen(!open)}
         sx={{
           borderRadius: "5px",
           border: "1px solid #E7E7E7",
