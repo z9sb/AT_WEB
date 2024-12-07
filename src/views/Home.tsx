@@ -3,7 +3,7 @@ import HeaderComponent from "../components/header/HeaderComponent";
 import LeftMenu from "../components/LeftMenu/Menu";
 import React from "react";
 import Divider from "@mui/material/Divider";
-import Dashboard from "./Dashboard.tsx";
+import { Outlet } from "react-router-dom";
 
 
 const Home = () => {
@@ -27,10 +27,11 @@ const Home = () => {
         }}
       >
         <HeaderComponent setOpen={setOpen} open={open} />
-        <Dashboard />
+        <Outlet />
       </Box>
     </Box>
   );
 };
 
 export default Home;
+

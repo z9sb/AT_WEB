@@ -10,8 +10,10 @@ import { TbMailFast } from "react-icons/tb";
 import { TbMailCheck } from "react-icons/tb";
 import { getTickets } from "../../services/database.js";
 import { CardTicket } from "../CardTicket/CardTicket";
+import { useAppContext } from "../../Context.js";
 
 const LabTabsTicket = () => {
+  const { translations } = useAppContext();
   const [value, setValue] = React.useState("1");
   const [tickets, setTickets] = React.useState([]);
 
@@ -44,7 +46,7 @@ const LabTabsTicket = () => {
             }}
           >
             <Tab
-              label="Todos"
+              label={translations("Todos")}
               value="1"
               icon={<LuMail size={15} />}
               iconPosition="start"
@@ -57,7 +59,7 @@ const LabTabsTicket = () => {
               }}
             />
             <Tab
-              label="Novos Tickets"
+              label={translations("Novos tickets")}
               icon={<LuMailPlus size={15} />}
               iconPosition="start"
               value="2"
@@ -70,7 +72,7 @@ const LabTabsTicket = () => {
               }}
             />
             <Tab
-              label="Em andamento"
+              label={translations("Em andamento")}
               value="3"
               icon={<TbMailFast size={22} />}
               iconPosition="start"
@@ -83,7 +85,7 @@ const LabTabsTicket = () => {
               }}
             />
             <Tab
-              label="Encerrados"
+              label={translations("Encerrados")}
               value="4"
               icon={<TbMailCheck size={17} />}
               iconPosition="start"

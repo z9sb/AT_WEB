@@ -11,15 +11,17 @@ import Settings from "../views/Settings.tsx";
 import Form from "../views/Form.tsx";
 import SignUp from "../views/SignUp.tsx";
 import Signin from "../views/Signin.tsx";
+import '../i18n.js';
 
 const router = createBrowserRouter(
   createRoutesFromElements(
     <Route>
-      <Route element={ <Protectes />}>
-        <Route path="/" index element={<Home />} />
-        <Route path="/Dashboard" index element={<Deshboard />} />
-        <Route path="/Settings" index element={<Settings />} />
-        <Route path="/Form" index element={<Form />} />
+      <Route element={<Protectes />}>
+        <Route path="/" element={<Home />}>
+          <Route path="dashboard" element={<Deshboard />} />
+          <Route path="settings" element={<Settings />} />
+          <Route path="form" element={<Form />} />
+        </Route>
       </Route>
       <Route path="/SignUp" element={<SignUp />} />
       <Route path="/Signin" element={<Signin />} />

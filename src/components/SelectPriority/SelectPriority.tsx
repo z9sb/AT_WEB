@@ -9,11 +9,13 @@ import {
 } from "@mui/material";
 import FiberManualRecordIcon from "@mui/icons-material/FiberManualRecord";
 import { IoIosArrowDown } from "react-icons/io";
+import { useAppContext } from "../../Context.js";
 
 const TicketFilter = () => {
+  const { translations } = useAppContext();
   const [anchorEl, setAnchorEl] = useState(null);
   const [selectedOption, setSelectedOption] = useState(
-    "Selecione a prioridade"
+    translations("Selecione a prioridade")
   );
   const open = Boolean(anchorEl);
 
@@ -68,7 +70,7 @@ const TicketFilter = () => {
               sx={{ color: "#1976D2", fontSize: "20px" }}
             />
           </ListItemIcon>
-          <ListItemText primary="Novo Ticket" />
+          <ListItemText primary={translations("Novo Ticket")} />
         </MenuItem>
 
         <MenuItem onClick={() => handleMenuItemClick("Tickets em andamento")}>
@@ -77,7 +79,7 @@ const TicketFilter = () => {
               sx={{ color: "#FFB74D", fontSize: "20px" }}
             />
           </ListItemIcon>
-          <ListItemText primary="Tickets em andamento" />
+          <ListItemText primary={translations("Tickets em andamento")} />
         </MenuItem>
 
         <MenuItem onClick={() => handleMenuItemClick("Tickets fechados")}>
@@ -86,7 +88,7 @@ const TicketFilter = () => {
               sx={{ color: "#4CAF50", fontSize: "20px" }}
             />
           </ListItemIcon>
-          <ListItemText primary="Tickets fechados" />
+          <ListItemText primary={translations("Tickets fechados")} />
         </MenuItem>
       </Menu>
     </Box>

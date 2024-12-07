@@ -1,8 +1,10 @@
 import SelectPriority from "../SelectPriority/SelectPriority.tsx";
 import { TbEdit } from "react-icons/tb";
 import { Box, Button } from "@mui/material";
+import { useAppContext } from "../../Context.js";
 
 const ButtonTicket = ({ setOpen, open }) => {
+  const { translations } = useAppContext();
   return (
     <Box sx={{ display: "flex", gap: "10px" }}>
       <SelectPriority />
@@ -19,7 +21,7 @@ const ButtonTicket = ({ setOpen, open }) => {
           backgroundColor: "#1A1A1A",
         }}
       >
-        Novo Ticket
+        {translations("Novo ticket")}
       </Button>
     </Box>
   );

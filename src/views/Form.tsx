@@ -12,8 +12,10 @@ import {
   Divider,
 } from "@mui/material";
 import { database } from "../services/database.js";
+import { useAppContext } from "../Context.js";
 
 const TicketForm = ({ open, setOpen }) => {
+  const { translations } = useAppContext();
   const {
     control,
     handleSubmit,
@@ -42,13 +44,13 @@ const TicketForm = ({ open, setOpen }) => {
       }}
     >
       <Typography variant="h5" sx={{ marginBottom: "10px", fontSize: "18px" }}>
-        Criar ticket rápido
+        {translations("Criar ticket rápido")}
       </Typography>
       <Typography
         variant="outlined"
         sx={{ marginBottom: "10px", fontSize: "14px", color: "#9E9E9E" }}
       >
-        Escreva abaixo suas sugestões e problemas
+        {translations("Escreva abaixo suas sugestões e problemas")}
       </Typography>
       <Divider sx={{ m: "10px 0" }} />
       <form
@@ -68,7 +70,7 @@ const TicketForm = ({ open, setOpen }) => {
           render={({ field }) => (
             <TextField
               {...field}
-              label="Título"
+              label={translations("Título")}
               variant="outlined"
               error={!!errors.title}
               helperText={errors.title?.message}
@@ -85,7 +87,7 @@ const TicketForm = ({ open, setOpen }) => {
           render={({ field }) => (
             <TextField
               {...field}
-              label="Descrição"
+              label={translations("Descrição")}
               variant="outlined"
               multiline
               rows={4}
@@ -97,7 +99,7 @@ const TicketForm = ({ open, setOpen }) => {
         />
 
         <FormControl fullWidth error={!!errors.type}>
-          <InputLabel>Tipo</InputLabel>
+          <InputLabel>{translations("Tipo")}</InputLabel>
           <Controller
             name="type"
             control={control}
@@ -106,10 +108,10 @@ const TicketForm = ({ open, setOpen }) => {
             render={({ field }) => (
               <Select {...field} label="Tipo">
                 <MenuItem value="">
-                  <em>Selecione um tipo</em>
+                  <em>{translations("Selecione um tipo")}</em>
                 </MenuItem>
-                <MenuItem value="bug">Erro</MenuItem>
-                <MenuItem value="feature">Sugestão</MenuItem>
+                <MenuItem value="bug">{translations("Erro")}</MenuItem>
+                <MenuItem value="feature">{translations("Sugestão")}</MenuItem>
               </Select>
             )}
           />
@@ -133,7 +135,7 @@ const TicketForm = ({ open, setOpen }) => {
             backgroundColor: "#1A1A1A",
           }}
         >
-          Enviar Ticket
+          {translations("Enviar ticket")}
         </Button>
         <Button
           variant="standard"
@@ -148,62 +150,70 @@ const TicketForm = ({ open, setOpen }) => {
             backgroundColor: "white",
           }}
         >
-          Cancelar
+          {translations("Cancelar")}
         </Button>
       </form>
     </Box>
   );
 };
 
-const FormBug = ({ control, errors }) => (
-  <FormControl fullWidth error={!!errors.severity}>
-    <InputLabel>Severidade</InputLabel>
-    <Controller
-      name="severity"
-      control={control}
-      defaultValue=""
-      rules={{ required: "Severidade é requerida" }}
-      render={({ field }) => (
-        <Select {...field} label="Severidade">
-          <MenuItem value="">
-            <em>Selecione a severidade</em>
-          </MenuItem>
-          <MenuItem value="low">Baixa</MenuItem>
-          <MenuItem value="medium">Média</MenuItem>
-          <MenuItem value="high">Alta</MenuItem>
-          <MenuItem value="critical">Imediata</MenuItem>
-        </Select>
-      )}
-    />
-    {errors.severity && (
-      <p style={{ color: "red" }}>{errors.severity.message}</p>
-    )}
-  </FormControl>
-);
+const FormBug = ({ control, errors }) => {
+  const { translations } = useAppContext();
 
-const FormFeature = ({ control, errors }) => (
-  <FormControl fullWidth error={!!errors.priority}>
-    <InputLabel>Propriedade</InputLabel>
-    <Controller
-      name="priority"
-      control={control}
-      defaultValue=""
-      rules={{ required: "Propriedade é requerida" }}
-      render={({ field }) => (
-        <Select {...field} label="Propriedade">
-          <MenuItem value="">
-            <em>Selecione uma prioridade</em>
-          </MenuItem>
-          <MenuItem value="low">Melhoria de aparência</MenuItem>
-          <MenuItem value="high">Nova funcionalidade</MenuItem>
-          <MenuItem value="medium">Outros</MenuItem>
-        </Select>
+  return (
+    <FormControl fullWidth error={!!errors.severity}>
+      <InputLabel>Severidade</InputLabel>
+      <Controller
+        name="severity"
+        control={control}
+        defaultValue=""
+        rules={{ required: "Severidade é requerida" }}
+        render={({ field }) => (
+          <Select {...field} label="Severidade">
+            <MenuItem value="">
+              <em>{translations("Selecione a severidade")}</em>
+            </MenuItem>
+            <MenuItem value="low">{translations("Baixa")}</MenuItem>
+            <MenuItem value="medium">{translations("Média")}</MenuItem>
+            <MenuItem value="high">{translations("Alta")}</MenuItem>
+            <MenuItem value="critical">{translations("Imediata")}</MenuItem>
+          </Select>
+        )}
+      />
+      {errors.severity && (
+        <p style={{ color: "red" }}>{errors.severity.message}</p>
       )}
-    />
-    {errors.priority && (
-      <p style={{ color: "red" }}>{errors.priority.message}</p>
-    )}
-  </FormControl>
-);
+    </FormControl>
+  );
+};
+
+const FormFeature = ({ control, errors }) => {
+  const { translations } = useAppContext();
+
+  return (
+    <FormControl fullWidth error={!!errors.priority}>
+      <InputLabel>{translations("Propriedade")}</InputLabel>
+      <Controller
+        name="priority"
+        control={control}
+        defaultValue=""
+        rules={{ required: "Propriedade é requerida" }}
+        render={({ field }) => (
+          <Select {...field} label="Propriedade">
+            <MenuItem value="">
+              <em>{translations("Selecione uma propriedade")}</em>
+            </MenuItem>
+            <MenuItem value="low">{translations("Melhoria de aparência")}</MenuItem>
+            <MenuItem value="high">{translations("Novas funções")}</MenuItem>
+            <MenuItem value="medium">{translations("Outros")}</MenuItem>
+          </Select>
+        )}
+      />
+      {errors.priority && (
+        <p style={{ color: "red" }}>{errors.priority.message}</p>
+      )}
+    </FormControl>
+  );
+};
 
 export default TicketForm;

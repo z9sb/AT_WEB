@@ -3,8 +3,13 @@ import { RxDashboard } from "react-icons/rx";
 import { RiUser3Line } from "react-icons/ri";
 import { PiTicketDuotone } from "react-icons/pi";
 import { TbSettings2 } from "react-icons/tb";
+import { useNavigate } from "react-router-dom";
+import { useAppContext } from "../../Context.tsx";
 
 const LeftMenu = ({ open }) => {
+  const navigate = useNavigate();
+  const { translations } = useAppContext();
+
   return (
     <Box sx={{ width: "100%", display: "flex", flexDirection: "column" }}>
       <Box sx={{ display: "flex", justifyContent: "center", width: "100%" }}>
@@ -22,6 +27,7 @@ const LeftMenu = ({ open }) => {
       >
         <IconButton
           variant="text"
+          onClick={() => navigate("/dashboard")}
           sx={{
             borderRadius: "10px",
             width: "100%",
@@ -38,7 +44,7 @@ const LeftMenu = ({ open }) => {
           >
             <RxDashboard />
             {open ? (
-              <Typography sx={{ marginLeft: "10px" }}>Dashboard</Typography>
+              <Typography sx={{ marginLeft: "10px" }}>{translations("Painel")}</Typography>
             ) : (
               ""
             )}
@@ -62,7 +68,7 @@ const LeftMenu = ({ open }) => {
           >
             <RiUser3Line />
             {open ? (
-              <Typography sx={{ marginLeft: "10px" }}>User</Typography>
+              <Typography sx={{ marginLeft: "10px" }}>{translations("Usuários")}</Typography>
             ) : (
               ""
             )}
@@ -86,13 +92,14 @@ const LeftMenu = ({ open }) => {
           >
             <PiTicketDuotone />
             {open ? (
-              <Typography sx={{ marginLeft: "10px" }}>Ticket</Typography>
+              <Typography sx={{ marginLeft: "10px" }}>{translations("Tickets")}</Typography>
             ) : (
               ""
             )}
           </Box>
         </IconButton>
         <IconButton
+          onClick={() => navigate("/settings")}
           variant="started"
           sx={{
             borderRadius: "10px",
@@ -110,7 +117,7 @@ const LeftMenu = ({ open }) => {
           >
             <TbSettings2 />
             {open ? (
-              <Typography sx={{ marginLeft: "10px" }}>Settings</Typography>
+              <Typography sx={{ marginLeft: "10px" }}>{translations("Configurações")}</Typography>
             ) : (
               ""
             )}

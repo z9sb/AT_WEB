@@ -2,8 +2,11 @@ import { Box, Button, IconButton, Typography } from "@mui/material";
 import AccountMenu from "../Account/AccountMenu.tsx";
 import { HiOutlineMenuAlt1 } from "react-icons/hi";
 import { IoIosNotificationsOutline } from "react-icons/io";
+import { useAppContext } from "../../Context.tsx";
+
 
 const Header = ({ setOpen, open }) => {
+  const { translations } = useAppContext();
   return (
     <Box
       sx={{ display: "flex", justifyContent: "space-between", padding: "10px" }}
@@ -14,7 +17,7 @@ const Header = ({ setOpen, open }) => {
           onClick={() => setOpen(!open)}
           startIcon={<HiOutlineMenuAlt1 size={30} />}
         ></Button>
-        <Typography sx={{ fontSize: "18px" }}>Bem vindo!</Typography>
+        <Typography sx={{ fontSize: "18px" }}>{translations("Bem vindo!")}</Typography>
       </Box>
       <Box sx={{ display: "flex" }}>
         <IconButton

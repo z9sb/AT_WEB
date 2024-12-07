@@ -13,8 +13,11 @@ import * as React from "react";
 import { logout } from "../../services/authentication.js";
 import { useNavigate } from "react-router-dom";
 import { supabase } from "../../Context.js";
+import { useAppContext } from "../../Context.js";
 
 const AccountMenu = ({ name }) => {
+
+  const { translations } = useAppContext();
   const navigate = useNavigate();
   const [anchorEl, setAnchorEl] = React.useState<null | HTMLElement>(null);
   const open = Boolean(anchorEl);
@@ -99,13 +102,13 @@ const AccountMenu = ({ name }) => {
         anchorOrigin={{ horizontal: "right", vertical: "bottom" }}
       >
         <MenuItem onClick={handleClose}>
-          <Avatar /> Profile
+          <Avatar /> {translations("Perfil")}
         </MenuItem>
         <MenuItem onClick={handleClose}>
-          <Avatar /> My account
+          <Avatar /> {translations("Minha conta")}
         </MenuItem>
         <MenuItem onClick={handleLogout}>
-          Sair
+          {translations("Sair")}
         </MenuItem>
       </Menu>
     </React.Fragment>

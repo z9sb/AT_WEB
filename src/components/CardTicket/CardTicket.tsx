@@ -1,6 +1,8 @@
 import { Box, Button, Typography, Avatar, Divider } from "@mui/material";
+import { useAppContext } from "../../Context.js";
 
 const CardTicket: React.FC = ({ ticket }) => {
+  const { translations } = useAppContext();
   return (
     <Box
       sx={{
@@ -37,8 +39,7 @@ const CardTicket: React.FC = ({ ticket }) => {
             marginRight: "10px",
           }}
         >
-          {" "}
-          AB{" "}
+          AB
         </Avatar>
       </Box>
       <Box sx={{ width: "100%", marginBottom: "10px" }}>
@@ -64,7 +65,7 @@ const CardTicket: React.FC = ({ ticket }) => {
           variant="body1"
           sx={{ fontSize: "12px", fontWeight: 500, marginTop: "10px" }}
         >
-          Data de abertura{" "}
+          {translations("Criado em")}{" "}
           {new Date(ticket.data_criacao).toLocaleString("pt-BR", {
             timeZone: "America/Sao_Paulo",
             day: "2-digit",
@@ -84,7 +85,7 @@ const CardTicket: React.FC = ({ ticket }) => {
             textDecoration: "",
           }}
         >
-          Responder
+          {translations("Responder")}
         </Button>
       </Box>
     </Box>

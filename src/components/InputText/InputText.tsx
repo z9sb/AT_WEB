@@ -1,13 +1,16 @@
 import InputAdornment from "@mui/material/InputAdornment";
 import { AiOutlineSearch } from "react-icons/ai";
 import { Box, TextField } from "@mui/material";
+import { useAppContext } from "../../Context.js";
 
 const InputText = () => {
+  const { translations} = useAppContext();
+
   return (
     <Box>
       <TextField
         id="outlined-basic"
-        placeholder="buscar"
+        placeholder={translations("buscar")}
         variant="outlined"
         slotProps={{
           input: {

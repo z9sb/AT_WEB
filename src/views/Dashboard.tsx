@@ -18,7 +18,7 @@ const Dashboard = () => {
       }}
     >
       <Typography variant="h4" sx={{ marginBottom: "10px" }}>
-        Ticketz
+        Ticket
       </Typography>
       <Box sx={{ display: "flex", gap: "10px", width: "100%" }}>
         <Box
