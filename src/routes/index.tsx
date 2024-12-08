@@ -11,6 +11,7 @@ import Settings from "../views/Settings.tsx";
 import Form from "../views/Form.tsx";
 import SignUp from "../views/SignUp.tsx";
 import Signin from "../views/Signin.tsx";
+import AuthLayout from "../views/AuthLayout.tsx";
 import '../i18n.js';
 
 const router = createBrowserRouter(
@@ -23,8 +24,10 @@ const router = createBrowserRouter(
           <Route path="form" element={<Form />} />
         </Route>
       </Route>
-      <Route path="/Signup" element={<SignUp />} />
-      <Route path="/Signin" element={<Signin />} />
+      <Route element={<AuthLayout />}>
+        <Route path="Signin" element={<Signin />} />
+        <Route path="Signup" element={<SignUp />} />
+      </Route>
     </Route>
   )
 );
