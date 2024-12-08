@@ -208,7 +208,7 @@ const Signin: React.FC = () => {
         >
           Não tem uma conta?{" "}
           <Link
-            href="/signup"
+            href="/Signup"
             sx={{ color: "#1A1A1A", textDecoration: "none" }}
           >
             Crie uma conta
