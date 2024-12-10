@@ -34,7 +34,7 @@ const AccountMenu = ({ name }) => {
     navigate("/Signin");
   }
   return (
-    <React.Fragment>
+    <Box>
       <Box>
         <Tooltip title="Conta">
           <IconButton
@@ -42,7 +42,6 @@ const AccountMenu = ({ name }) => {
             sx={{
               width: "100%",
               borderRadius: "20px",
-              backgroundColor: "#FAFAFA",
               padding: '4px'
             }}
             aria-controls={open ? "account-menu" : undefined}
@@ -111,7 +110,7 @@ const AccountMenu = ({ name }) => {
           {translations("Sair")}
         </MenuItem>
       </Menu>
-    </React.Fragment>
+    </Box>
   );
 };
 

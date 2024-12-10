@@ -32,7 +32,6 @@ const LeftMenu = ({ open }) => {
             borderRadius: "10px",
             width: "100%",
             justifyContent: "flex-start",
-            color: "#2E2C34",
           }}
         >
           <Box
@@ -56,7 +55,6 @@ const LeftMenu = ({ open }) => {
             borderRadius: "10px",
             width: "100%",
             justifyContent: "flex-start",
-            color: "#2E2C34",
           }}
         >
           <Box
@@ -80,7 +78,6 @@ const LeftMenu = ({ open }) => {
             borderRadius: "10px",
             width: "100%",
             justifyContent: "flex-start",
-            color: "#2E2C34",
           }}
         >
           <Box
@@ -105,7 +102,6 @@ const LeftMenu = ({ open }) => {
             borderRadius: "10px",
             width: "100%",
             justifyContent: "flex-start",
-            color: "#2E2C34",
           }}
         >
           <Box

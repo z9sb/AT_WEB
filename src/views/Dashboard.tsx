@@ -5,15 +5,21 @@ import ButtonTicket from "../components/ButtonTicket/ButtonTicket.tsx";
 import LabTabsTicket from "../components/ControlTicket/ControlTicket.tsx";
 import TicketForm from "./Form.tsx";
 
-
 const Dashboard = () => {
-  const [open, setOpen] = React.useState(false);
+  const [open, setOpen] = React.useState(() => {
+    const storedOpen = localStorage.getItem("ticketModalOpen");
+    return storedOpen === "true";
+  });
+
+  const handleSetOpen = (newOpenState) => {
+    setOpen(newOpenState);
+    localStorage.setItem("ticketModalOpen", newOpenState);
+  };
 
   return (
     <Box
       sx={{
         padding: "20px 40px",
-        backgroundColor: "#F8F8F8",
         height: "87.6vh",
       }}
     >
@@ -23,11 +29,10 @@ const Dashboard = () => {
       <Box sx={{ display: "flex", gap: "10px", width: "100%" }}>
         <Box
           sx={{
-            backgroundColor: "#fff",
             padding: "20px",
             borderRadius: "5px",
             height: "75.9vh",
-            width: "100%"
+            width: "100%",
           }}
         >
           <Box
@@ -38,12 +43,12 @@ const Dashboard = () => {
             }}
           >
             <InputText />
-            <ButtonTicket setOpen={setOpen} open={open}/>
+            <ButtonTicket setOpen={handleSetOpen} open={open} />
           </Box>
           <LabTabsTicket />
         </Box>
 
-        {open && <TicketForm setOpen={setOpen} open={open}/>}
+        {open && <TicketForm setOpen={handleSetOpen} open={open} />}
       </Box>
     </Box>
   );

@@ -80,7 +80,6 @@ const CardTicket: React.FC = ({ ticket }) => {
           sx={{
             textTransform: "none",
             fontSize: "12px",
-            color: "#1A1A1A",
             fontWeight: 500,
             textDecoration: "",
           }}

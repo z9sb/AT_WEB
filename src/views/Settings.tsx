@@ -38,9 +38,9 @@ const Settings = () => {
       </Typography>
 
       <Box sx={{ marginBottom: "20px", marginTop: "20px" }}>
-        <IoLanguageOutline size={20} color="#1A1A1A" />
+        <IoLanguageOutline size={20} />
         <FormControl component="fieldset">
-          <FormLabel component="legend" sx={{ color: "#1A1A1A" }}>
+          <FormLabel component="legend">
             {translations("Idioma")}
           </FormLabel>
           <RadioGroup
@@ -48,16 +48,7 @@ const Settings = () => {
             value={selectedLanguage}
             onChange={handleLanguageChange}
             sx={{
-              marginTop: "10px",
-              "& .MuiFormControlLabel-label": {
-                color: "#2E2C34",
-              },
-              "& .MuiRadio-root": {
-                color: "#2E2C34",
-              },
-              "& .Mui-checked": {
-                color: "#1A1A1A",
-              },
+              marginTop: "10px"
             }}
           >
             <FormControlLabel

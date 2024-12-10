@@ -9,7 +9,6 @@ import {
 } from "@mui/material";
 import { FaUser, FaRegEye, FaRegEyeSlash } from "react-icons/fa";
 import React, { useState } from "react";
-import theme from "../theme/index.tsx";
 import { FcGoogle } from "react-icons/fc";
 import { supabase } from "../Context.tsx";
 import { signinAutentication } from "../services/authentication.js";
@@ -65,7 +64,6 @@ const Signin: React.FC = () => {
         justifyContent: "center",
         height: "100vh",
       }}
-      theme={theme}
     >
       <Box sx={{ width: "40%", height: "100%", backgroundColor: "#1A1A1A" }}>
         <img

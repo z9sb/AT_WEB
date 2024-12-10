@@ -3,10 +3,11 @@ import AccountMenu from "../Account/AccountMenu.tsx";
 import { HiOutlineMenuAlt1 } from "react-icons/hi";
 import { IoIosNotificationsOutline } from "react-icons/io";
 import { useAppContext } from "../../Context.tsx";
+import { TbSunHigh } from "react-icons/tb";
 
-
-const Header = ({ setOpen, open }) => {
+const Header = ({ setOpen, open, setDarkMode, darkMode }) => {
   const { translations } = useAppContext();
+  
   return (
     <Box
       sx={{ display: "flex", justifyContent: "space-between", padding: "10px" }}
@@ -17,7 +18,9 @@ const Header = ({ setOpen, open }) => {
           onClick={() => setOpen(!open)}
           startIcon={<HiOutlineMenuAlt1 size={30} />}
         ></Button>
-        <Typography sx={{ fontSize: "18px" }}>{translations("Bem vindo!")}</Typography>
+        <Typography sx={{ fontSize: "18px" }}>
+          {translations("Bem vindo!")}
+        </Typography>
       </Box>
       <Box sx={{ display: "flex" }}>
         <IconButton
@@ -29,6 +32,11 @@ const Header = ({ setOpen, open }) => {
           }}
         >
           <IoIosNotificationsOutline size={25} />
+        </IconButton>
+        <IconButton
+          onClick={() => setDarkMode(!darkMode)}
+        >
+          <TbSunHigh />
         </IconButton>
         <AccountMenu name={"João Pereira"} />
       </Box>

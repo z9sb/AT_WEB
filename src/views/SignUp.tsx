@@ -9,7 +9,7 @@ import {
 } from "@mui/material";
 import { FaUser, FaRegEye, FaRegEyeSlash } from "react-icons/fa";
 import { useState } from "react";
-import theme from "../theme/index.tsx";
+
 import { FcGoogle } from "react-icons/fc";
 import { isValidEmail, isValidPassword } from "../utils/verification";
 import { supabase } from "../Context.tsx";
@@ -96,7 +96,6 @@ const SignUp = () => {
         justifyContent: "center",
         height: "100vh",
       }}
-      theme={theme}
     >
       {" "}
       <Box sx={{ width: "40%", height: "100%", backgroundColor: "#1A1A1A" }}>
