@@ -37,8 +37,8 @@ const TicketForm = ({ open, setOpen }) => {
         width: "100%",
         maxWidth: 300,
         margin: "0px 0px 0px 10px",
+        border: "1px solid #E7E7E7",
         padding: "20px",
-        backgroundColor: "#fff",
         borderRadius: "5px",
         transition: "margin-left 0.3s ease-in-out",
       }}
