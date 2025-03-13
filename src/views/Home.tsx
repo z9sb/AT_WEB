@@ -26,7 +26,7 @@ const Home = () => {
       <Box sx={{ display: "flex" }}>
         <Box
           sx={{
-            width: open ? "12%" : "4%",
+            width: open ? "180px" : "70px",
             transition: "width 0.3s ease-in-out",
           }}
         >

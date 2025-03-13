@@ -8,7 +8,6 @@ import Home from "../views/Home.tsx";
 import Protectes from "./protectes";
 import Deshboard from "../views/Dashboard.tsx";
 import Settings from "../views/Settings.tsx";
-import Form from "../views/Form.tsx";
 import SignUp from "../views/SignUp.tsx";
 import Signin from "../views/Signin.tsx";
 import AuthLayout from "../views/AuthLayout.tsx";
@@ -21,7 +20,6 @@ const router = createBrowserRouter(
         <Route path="/" element={<Home />}>
           <Route path="dashboard" element={<Deshboard />} />
           <Route path="settings" element={<Settings />} />
-          <Route path="form" element={<Form />} />
         </Route>
       </Route>
       <Route element={<AuthLayout />}>
